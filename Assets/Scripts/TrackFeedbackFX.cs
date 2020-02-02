@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class TrackFeedbackFX : MonoBehaviour
 {
     public Image failEffect;
+    public Image okayEffect;
     public Image successEffect;
+    public Image perfectEffect;
     public Image holdEffect;
 
     public float showTime = .1f;
@@ -16,7 +18,9 @@ public class TrackFeedbackFX : MonoBehaviour
     private void Awake()
     {
         SetImageAlpha(failEffect, 0f);
+        SetImageAlpha(okayEffect, 0f);
         SetImageAlpha(successEffect, 0f);
+        SetImageAlpha(perfectEffect, 0f);
         SetImageAlpha(holdEffect, 0f);
     }
 
@@ -53,7 +57,19 @@ public class TrackFeedbackFX : MonoBehaviour
     private void Inst_OnBeatScored(BeatBlock block, float score)
     {
         buttonIsDown = false;
-        StartCoroutine(FlashImageCR(successEffect));
+        float adjustedScore = score - block.BeatLength;
+        if (adjustedScore > 2.5f)
+        {
+            StartCoroutine(FlashImageCR(perfectEffect));
+        }
+        else if (adjustedScore > 1.5f)
+        {
+            StartCoroutine(FlashImageCR(successEffect));
+        }
+        else
+        {
+            StartCoroutine(FlashImageCR(okayEffect));
+        }
     }
 
     private void Inst_OnMissed(BeatBlock block)
