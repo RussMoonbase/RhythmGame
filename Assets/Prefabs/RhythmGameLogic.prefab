@@ -43,3 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb78e55d48ade041950f9a2bac15e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beatTrack: {fileID: 0}
+  beatBlockPrefab: {fileID: 2255551336143621935, guid: 8b73dc3e36d702f47adfcbf35f2564bf,
+    type: 3}
+  beatSize: 100
+  distanceBetweenBeats: 200
