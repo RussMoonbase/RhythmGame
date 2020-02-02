@@ -1,1 +1,5 @@
-﻿public enum BeatBit { None, Single, Long };
+﻿public enum BeatBit {
+    None,
+    Single,
+    Long
+};
