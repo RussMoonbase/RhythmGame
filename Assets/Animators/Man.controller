@@ -11,7 +11,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 90e765d84bfbd5d4c88b9ff6e3e3613b,
       type: 3}
-    m_Threshold: -2
+    m_Threshold: -0.8
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -20,7 +20,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: e089cdec405da9744b9c03ba6e44695a,
       type: 3}
-    m_Threshold: -1.5
+    m_Threshold: -0.6
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -29,7 +29,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: db717be1e8aff6c499f383014070bd40,
       type: 3}
-    m_Threshold: -1
+    m_Threshold: -0.4
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -38,7 +38,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 99e9bcc78161de345b0cd718da3f677b,
       type: 3}
-    m_Threshold: -0.5
+    m_Threshold: -0.2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -56,7 +56,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: ca47aee1225765d4a9d4474f91588e3e,
       type: 3}
-    m_Threshold: 0.5
+    m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -65,7 +65,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 85a42d82971fa674195feac693c33d64,
       type: 3}
-    m_Threshold: 1
+    m_Threshold: 0.4
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -74,7 +74,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: a24ba7c439aaf41409ff3be85f4d70cb,
       type: 3}
-    m_Threshold: 1.5
+    m_Threshold: 0.6
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -83,7 +83,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: c4a386a943b8ba549923190e3645eefc,
       type: 3}
-    m_Threshold: 2
+    m_Threshold: 0.8
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -91,8 +91,8 @@ BlendTree:
     m_Mirror: 0
   m_BlendParameter: HappinessFactor
   m_BlendParameterY: Blend
-  m_MinThreshold: -2
-  m_MaxThreshold: 2
+  m_MinThreshold: -0.8
+  m_MaxThreshold: 0.8
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0

@@ -970,6 +970,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ccd133f19c3bab45a94d5feaffa3bbd, type: 3}
+--- !u!114 &1051411961 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7431606196466126035, guid: 2ef95df46a70e704888de26bf110c242,
+    type: 3}
+  m_PrefabInstance: {fileID: 8835081868898971474}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed3eccb79e3b914ea97bee0f1aa77aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1070339580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,6 +2138,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.00035744533
       objectReference: {fileID: 0}
+    - target: {fileID: 2514867493726772803, guid: 2d23ddf98d1d3a84d96f0a23b698af15,
+        type: 3}
+      propertyPath: _measureHype
+      value: 
+      objectReference: {fileID: 1051411961}
     - target: {fileID: 2588062001853801226, guid: 2d23ddf98d1d3a84d96f0a23b698af15,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -5554,6 +5571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   increaseKey: 104
   decreaseKey: 103
+  _measureHype: {fileID: 1051411961}
 --- !u!1001 &8835081868898971474
 PrefabInstance:
   m_ObjectHideFlags: 0
