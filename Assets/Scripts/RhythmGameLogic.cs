@@ -24,7 +24,7 @@ public class RhythmGameLogic : MonoBehaviour
 
     public int initialEmptyBeats = 8;
     public float beatLeadTime = 12; // how long OnBeatStartingSoon is called before OnBeat
-    // todo maybe have a calibrated offset 
+    // todo maybe have a calibrated offset
     public float pressButtonWithinTime = .2f; // press the button within .2 beats of the actual start/end time
     public float deleteAfter = 20; // delete after this many beats
 
@@ -95,11 +95,13 @@ public class RhythmGameLogic : MonoBehaviour
             }
         }
 
+        /*
         // instantiation
         while (Jukebox.inst.CurrentBeat + beatLeadTime > lastInstantiatedBeat)
         {
             AdvanceBeatIndex();
         }
+        */
 
         // cleanup
         for (int i = 0; i < instantiatedBlocks.Count; i++)
