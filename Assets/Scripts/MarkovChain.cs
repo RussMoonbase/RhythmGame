@@ -59,7 +59,7 @@ public sealed class MarkovChain {
     }
 
     private static List<string> ChainEdges(Dictionary<Tuple<string, string>, List<string>> edges, Config config) {
-        Tuple<string, string> edge = new List<Tuple<string, string>>(edges.Keys)[config.random.Next(edges.Count)];
+        Tuple<string, string> edge = PickFirstEdge(new List<Tuple<string, string>>(edges.Keys), config);
 
         List<string> chain = new List<string>();
 
@@ -84,5 +84,21 @@ public sealed class MarkovChain {
 
         Debug.Log("Chain of length " + chain.Count + " created.");
         return chain;
+    }
+
+    private static Tuple<string, string> PickFirstEdge(List<Tuple<string, string>> edges, Config config) {
+        List<Tuple<string, string>> capitalEdges = new List<Tuple<string, string>>();
+
+        foreach (Tuple<string, string> edge in edges) {
+            if (char.IsUpper(edge.first[0])) {
+                capitalEdges.Add(edge);
+            }
+        }
+
+        if (capitalEdges.Count == 0) {
+            capitalEdges = edges;
+        }
+
+        return capitalEdges[config.random.Next(capitalEdges.Count)];
     }
 }
