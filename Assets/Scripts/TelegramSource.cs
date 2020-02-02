@@ -17,7 +17,7 @@ public class TelegramSource : MonoBehaviour {
     private MarkovChain lovePoemChain;
     private MarkovChain lawBookChain;
 
-    private void Start() {
+    private void Awake() {
         inst = this;
         DontDestroyOnLoad(this);
 
