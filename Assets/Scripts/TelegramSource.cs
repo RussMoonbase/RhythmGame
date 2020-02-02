@@ -5,6 +5,9 @@ using UnityEngine;
 public class TelegramSource : MonoBehaviour {
     public static TelegramSource inst { get; private set; }
 
+    private static string LOVE_POEM_PREFIX = "Dearest " + Names.LOVE_INTEREST + ",\n\n";
+    private static string LOVE_POEM_SUFFIX = "\n\nYours always,\n" + Names.MAIN_CHARACTER + "\n";
+
     public TextAsset lovePoemCorpus;
     public TextAsset lawBookCorpus;
 
@@ -14,11 +17,9 @@ public class TelegramSource : MonoBehaviour {
     private MarkovChain lovePoemChain;
     private MarkovChain lawBookChain;
 
-    private string lovePoem;
-    private string lawBook;
-
     private void Awake() {
         inst = this;
+        DontDestroyOnLoad(this);
 
         MarkovChain.Config config = new MarkovChain.Config();
         config.minChainLength = this.minChainLength;
@@ -32,7 +33,13 @@ public class TelegramSource : MonoBehaviour {
     }
 
     public List<string> GetLovePoem() {
-        return this.lovePoemChain.GetOutput();
+        List<string> finalPoem = new List<string>();
+
+        finalPoem.AddRange(LOVE_POEM_PREFIX.Split(' '));
+        finalPoem.AddRange(this.lovePoemChain.GetOutput());
+        finalPoem.AddRange(LOVE_POEM_SUFFIX.Split(' '));
+
+        return finalPoem;
     }
 
     public List<string> GetLawBook() {
@@ -43,7 +50,7 @@ public class TelegramSource : MonoBehaviour {
         this.lovePoemChain.Regenerate();
         this.lawBookChain.Regenerate();
 
-        Debug.Log(string.Join(" ", this.lovePoemChain.GetOutput()));
-        Debug.Log(string.Join(" ", this.lawBookChain.GetOutput()));
+        Debug.Log(string.Join(" ", this.GetLovePoem()));
+        Debug.Log(string.Join(" ", this.GetLawBook()));
     }
 }

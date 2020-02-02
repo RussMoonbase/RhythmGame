@@ -36,8 +36,9 @@ public sealed class MarkovChain {
         List<string> words = new List<string>();
         string[] rawWords = source.text.Split(' ');
         for (int i = 0; i < rawWords.Length; i++) {
-            if (!string.IsNullOrWhiteSpace(rawWords[i])) {
-                words.Add(rawWords[i]);
+            string word = rawWords[i].Trim();
+            if (!string.IsNullOrWhiteSpace(word)) {
+                words.Add(word);
             }
         }
 
