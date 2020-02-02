@@ -77,7 +77,5 @@ public class TrackFeedbackFX : MonoBehaviour
             SetImageAlpha(image, image.color.a - (Time.deltaTime / showTime));
             yield return null;
         }
-        // TODO REMOVE
-        Debug.Log("fade done");
     }
 }
