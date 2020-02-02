@@ -8,14 +8,11 @@ public class Jukebox : MonoBehaviour
     public static Jukebox inst { get; private set; }
 
     public static UnityAction<float> OnBeat = delegate { };
-    public static UnityAction<float> OnBeatStartingSoon = delegate { }; // have a callback for a beat about to start, to generate the onscreen cues
+    //public static UnityAction<float> OnBeatStartingSoon = delegate { }; // have a callback for a beat about to start, to generate the onscreen cues
     private float lastBeatCallback = float.NegativeInfinity;
-    private float lastBeatStartingSoonCallback = float.NegativeInfinity;
 
     public AudioSource audioSource;
     public SongInfo songToPlay;
-    public float beatLeadTime = .25f; // how long OnBeatStartingSoon is called before OnBeat
-    // todo maybe have an offset 
 
     public float CurrentBeat
     {
@@ -37,6 +34,12 @@ public class Jukebox : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Current Beat " + CurrentBeat);
+        //Debug.Log("Current Beat " + CurrentBeat);
+        var floorBeat = Mathf.Floor(CurrentBeat);
+        if (floorBeat > lastBeatCallback)
+        {
+            OnBeat(floorBeat);
+            lastBeatCallback = floorBeat;
+        }
     }
 }
