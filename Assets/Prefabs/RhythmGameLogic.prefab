@@ -48,13 +48,14 @@ MonoBehaviour:
   buttonToPress: 122
   beatBlockPrefab: {fileID: 2255551336143621935, guid: 8b73dc3e36d702f47adfcbf35f2564bf,
     type: 3}
+  beatTextPrefab: {fileID: 2718465856665844908, guid: 57a73753a857a472c9e3889f5a5bfa7c,
+    type: 3}
   initialEmptyBeats: 8
   beatLeadTime: 12
   pressButtonWithinTime: 0.5
   pressTimeOffset: 0.05
   deleteAfter: 20
   poem: []
---- !u!114 &3266083610380630465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
