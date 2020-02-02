@@ -33,7 +33,7 @@ public class RhythmGameLogic : MonoBehaviour
     // probably care about it in pairs, so like 101010 is 3 beats in sequence and 101110 is one beat and one long beat
     // and broken into 2 byte sections????? i guess?
 
-    List<BeatBit> toPlay = new List<BeatBit>();
+    private List<BeatBit> toPlay = new List<BeatBit>();
 
     private void Awake()
     {
@@ -42,16 +42,8 @@ public class RhythmGameLogic : MonoBehaviour
 
     private void Start()
     {
-        // TODO get the beat bits from somewhere
-        for (int i = 0; i < initialEmptyBeats; i++)
-        {
-            toPlay.Add(BeatBit.None);
-        }
-        var choices = new BeatBit[] { BeatBit.None, BeatBit.Single, BeatBit.Long, BeatBit.Long };
-        for (int i = 0; i < 100; i++)
-        {
-            toPlay.Add(Util.RandomChoose(choices));
-        }
+        List<string> poem = TelegramSource.inst.GetLovePoem();
+        this.toPlay = BeatBitCompiler.Compile(poem, RandomSource.rand);
     }
 
     private void Update()
