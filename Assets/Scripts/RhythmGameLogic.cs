@@ -64,36 +64,43 @@ public class RhythmGameLogic : MonoBehaviour
         {
             if (Input.GetKeyDown(buttonToPress))
             {
-                bool foundOne = false;
+                BeatBlock closest = null;
+                float closestDelta = 0f;
                 // look for a block I might be pressing on
                 for (int i = 0; i < instantiatedBlocks.Count; i++)
                 {
                     var block = instantiatedBlocks[i];
                     float startDelta = Mathf.Abs(block.StartOnBeat - Jukebox.inst.CurrentBeat);
-                    if (startDelta < pressButtonWithinTime)
+                    if (startDelta < pressButtonWithinTime && !alreadyScoredBlocks.Contains(block)
+                            && (null == closest || startDelta < closestDelta))
                     {
-                        Debug.Log("Hitting block " + block + " current time " + Jukebox.inst.CurrentBeat);
-                        pressingOnBlock = block;
-                        OnBeatPressed(block);
-                        foundOne = true;
+                        closest = block;
+                        closestDelta = startDelta;
                         break;
                     }
                 }
 
-                if (!foundOne)
+                if (null != closest)
+                {
+                    Debug.Log("Hitting block " + closest + " current time " + Jukebox.inst.CurrentBeat);
+                    pressingOnBlock = closest;
+                    pressStartTime = Jukebox.inst.CurrentBeat;
+                    OnBeatPressed(closest);
+                }
+                else
                 {
                     OnMissed(); // you missed, you fool!!!
                 }
             }
         }
 
-        /*
+        
         // instantiation
-        while (Jukebox.inst.CurrentBeat + beatLeadTime > lastInstantiatedBeat)
+        while (Jukebox.inst.CurrentBeat + beatLeadTime > lastInstantiatedBeat && lastInstantiatedBeat < toPlay.Count)
         {
             AdvanceBeatIndex();
         }
-        */
+        
 
         // cleanup
         for (int i = 0; i < instantiatedBlocks.Count; i++)

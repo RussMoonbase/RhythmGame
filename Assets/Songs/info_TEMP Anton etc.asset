@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: info_TEMP Anton etc
   m_EditorClassIdentifier: 
   song: {fileID: 8300000, guid: a956611d774d722468b3c7c35fd54e2a, type: 3}
-  bpm: 120
+  bpm: 121.8
   songStartTime: 0.133
