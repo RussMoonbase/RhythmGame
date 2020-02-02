@@ -282,6 +282,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -1.9760001, y: -30.000002, z: 0}
+--- !u!1001 &724597334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908871881357264587, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506662157916325954, guid: 58006d6b27345ca468d5f37e2551de79,
+        type: 3}
+      propertyPath: m_Name
+      value: TelegramSource
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58006d6b27345ca468d5f37e2551de79, type: 3}
 --- !u!1001 &787769652
 PrefabInstance:
   m_ObjectHideFlags: 0
