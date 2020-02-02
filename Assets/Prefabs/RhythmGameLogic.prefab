@@ -51,7 +51,9 @@ MonoBehaviour:
   initialEmptyBeats: 8
   beatLeadTime: 12
   pressButtonWithinTime: 0.5
+  pressTimeOffset: 0.05
   deleteAfter: 20
+  poem: []
 --- !u!114 &3266083610380630465
 MonoBehaviour:
   m_ObjectHideFlags: 0
