@@ -14,6 +14,7 @@ public class RhythmGameLogic : MonoBehaviour
     public RectTransform beatTrack;
     public KeyCode buttonToPress = KeyCode.Z;
     public GameObject beatBlockPrefab;
+    public GameObject beatTextPrefab;
 
     private int lastInstantiatedBeat = -1;
     private BeatBlock lastInstantiatedBlock = null;
@@ -22,14 +23,15 @@ public class RhythmGameLogic : MonoBehaviour
     private BeatBlock pressingOnBlock = null;
     private float pressStartTime = 0f;
 
+    private List<string> poem = new List<string>();
+    private List<BeatText> instantiatedBeatTexts = new List<BeatText>();
+
     public int initialEmptyBeats = 8;
     public float beatLeadTime = 12; // how long OnBeatStartingSoon is called before OnBeat
     // todo maybe have a calibrated offset
     public float pressButtonWithinTime = .2f; // press the button within .2 beats of the actual start/end time
     public float pressTimeOffset = .15f; // assume players press the button this late
     public float deleteAfter = 20; // delete after this many beats
-
-    public List<string> poem = new List<string>();
 
     // the beat pattern is going to come as a series of 0s and 1s in bytes
     // probably care about it in pairs, so like 101010 is 3 beats in sequence and 101110 is one beat and one long beat
@@ -106,13 +108,13 @@ public class RhythmGameLogic : MonoBehaviour
                 alreadyScoredBlocks.Add(block);
             }
         }
-        
+
         // instantiation
         while (Jukebox.inst.CurrentBeat + beatLeadTime > lastInstantiatedBeat && lastInstantiatedBeat < toPlay.Count)
         {
             AdvanceBeatIndex();
         }
-        
+
 
         // cleanup
         for (int i = 0; i < instantiatedBlocks.Count; i++)
@@ -156,6 +158,7 @@ public class RhythmGameLogic : MonoBehaviour
                     lastInstantiatedBlock.StartOnBeat = lastInstantiatedBeat;
                     lastInstantiatedBlock.UpdatePosition();
                     lastInstantiatedBlock.transform.SetSiblingIndex(1); // draw order
+
                     instantiatedBlocks.Add(lastInstantiatedBlock);
                 }
             }
@@ -167,6 +170,17 @@ public class RhythmGameLogic : MonoBehaviour
         else
         {
             lastInstantiatedBeat = toPlay.Count; // the end
+        }
+
+        if ((lastInstantiatedBeat % 8) == 0) {
+            int wordIndex = lastInstantiatedBeat / 8;
+
+            BeatText beatText = Instantiate(beatTextPrefab, beatTrack).GetComponent<BeatText>();
+            beatText.StartOnBeat = lastInstantiatedBeat;
+            beatText.UpdatePosition();
+            beatText.transform.SetSiblingIndex(1);
+            beatText.SetText(poem[wordIndex]);
+            instantiatedBeatTexts.Add(beatText);
         }
     }
 
