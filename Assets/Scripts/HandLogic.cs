@@ -18,20 +18,28 @@ public class HandLogic : MonoBehaviour
    {
       if (Input.GetKeyDown(_tapKey))
       {
-         TapDown();
+         HoldDown();
       }
-   }
-
-   public void TapDown()
-   {
-      if (_animator)
+      
+      if (Input.GetKeyUp(_tapKey))
       {
-         _animator.SetTrigger("Tapped");
+         ReleaseHold();
       }
    }
 
    public void HoldDown()
    {
+      if (_animator)
+      {
+         _animator.SetBool("isHeld", true);
+      }
+   }
 
+   public void ReleaseHold()
+   {
+      if (_animator)
+      {
+         _animator.SetBool("isHeld", false);
+      }
    }
 }
