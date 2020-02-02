@@ -41,4 +41,9 @@ public class BeatBlock : MonoBehaviour
         BeatLength = length;
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(screenSize, distanceBetweenBeats * BeatLength));
     }
+
+    public override string ToString()
+    {
+        return "(Beat starts " + StartOnBeat + " ends " + EndOnBeat + ")";
+    }
 }

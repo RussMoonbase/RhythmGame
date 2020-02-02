@@ -1,24 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RhythmGameLogic : MonoBehaviour
 {
-    public RhythmGameLogic inst { get; private set; }
+    public static RhythmGameLogic inst { get; private set; }
+
+    public event UnityAction<BeatBlock> OnBeatPressed = delegate { }; // Player pressed downn on a beat
+    public event UnityAction<BeatBlock, float> OnBeatScored = delegate { }; // Player released on a beat and received some points
+    public event UnityAction OnMissed = delegate { };
+
     public RectTransform beatTrack;
     public KeyCode buttonToPress = KeyCode.Z;
     public GameObject beatBlockPrefab;
 
     private int lastInstantiatedBeat = -1;
     private BeatBlock lastInstantiatedBlock = null;
-    private Queue<BeatBlock> blocks = new Queue<BeatBlock>();
+    private List<BeatBlock> instantiatedBlocks = new List<BeatBlock>();
+    private List<BeatBlock> alreadyScoredBlocks = new List<BeatBlock>();
+    private BeatBlock pressingOnBlock = null;
+    private float pressStartTime = 0f;
 
     public int initialEmptyBeats = 8;
     public float beatLeadTime = 12; // how long OnBeatStartingSoon is called before OnBeat
     // todo maybe have a calibrated offset 
+    public float pressButtonWithinTime = .2f; // press the button within .2 beats of the actual start/end time
     public float deleteAfter = 20; // delete after this many beats
 
-    private BeatBlock currentBlock = null;
 
     // the beat pattern is going to come as a series of 0s and 1s in bytes
     // probably care about it in pairs, so like 101010 is 3 beats in sequence and 101110 is one beat and one long beat
@@ -48,13 +57,42 @@ public class RhythmGameLogic : MonoBehaviour
     private void Update()
     {
         // update input for the tracks
-        if (null != currentBlock)
+
+        if (null != pressingOnBlock)
         {
-            
+            if (Input.GetKeyUp(buttonToPress))
+            {
+                float score = ScoreBeat(pressingOnBlock, pressStartTime, Jukebox.inst.CurrentBeat);
+                OnBeatScored(pressingOnBlock, score);
+                alreadyScoredBlocks.Add(pressingOnBlock);
+                pressingOnBlock = null;
+            }
         }
         else
         {
+            if (Input.GetKeyDown(buttonToPress))
+            {
+                bool foundOne = false;
+                // look for a block I might be pressing on
+                for (int i = 0; i < instantiatedBlocks.Count; i++)
+                {
+                    var block = instantiatedBlocks[i];
+                    float startDelta = Mathf.Abs(block.StartOnBeat - Jukebox.inst.CurrentBeat);
+                    if (startDelta < pressButtonWithinTime)
+                    {
+                        Debug.Log("Hitting block " + block + " current time " + Jukebox.inst.CurrentBeat);
+                        pressingOnBlock = block;
+                        OnBeatPressed(block);
+                        foundOne = true;
+                        break;
+                    }
+                }
 
+                if (!foundOne)
+                {
+                    OnMissed(); // you missed, you fool!!!
+                }
+            }
         }
 
         // instantiation
@@ -64,10 +102,23 @@ public class RhythmGameLogic : MonoBehaviour
         }
 
         // cleanup
-        while (blocks.Count > 0 && Jukebox.inst.CurrentBeat > blocks.Peek().EndOnBeat + deleteAfter)
+        for (int i = 0; i < instantiatedBlocks.Count; i++)
         {
-            var block = blocks.Dequeue();
-            Destroy(block.gameObject);
+            var block = instantiatedBlocks[i];
+            if (Jukebox.inst.CurrentBeat > block.EndOnBeat + deleteAfter)
+            {
+                Destroy(block.gameObject);
+                instantiatedBlocks.RemoveAt(i);
+                i--;
+            }
+        }
+        for (int i = 0; i < alreadyScoredBlocks.Count; i++)
+        {
+            if (null == alreadyScoredBlocks[i])
+            {
+                alreadyScoredBlocks.RemoveAt(i);
+                i--;
+            }
         }
     }
 
@@ -91,7 +142,7 @@ public class RhythmGameLogic : MonoBehaviour
                     lastInstantiatedBlock = Instantiate(beatBlockPrefab, beatTrack).GetComponent<BeatBlock>();
                     lastInstantiatedBlock.StartOnBeat = lastInstantiatedBeat;
                     lastInstantiatedBlock.UpdatePosition();
-                    blocks.Enqueue(lastInstantiatedBlock);
+                    instantiatedBlocks.Add(lastInstantiatedBlock);
                 }
             }
             else
@@ -103,5 +154,12 @@ public class RhythmGameLogic : MonoBehaviour
         {
             lastInstantiatedBeat = toPlay.Count; // the end
         }
+    }
+
+    public float ScoreBeat(BeatBlock beat, float beatStartedPress, float beatEndedPress)
+    {
+        Debug.Log("Scored beat: " + beat + " started press " + beatStartedPress + " ended press " + beatEndedPress);
+        // TODO score logic!!!!!!!!!!!!!!!!
+        return 1f;
     }
 }
