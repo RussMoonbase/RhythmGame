@@ -9,7 +9,7 @@ public class RhythmGameLogic : MonoBehaviour
 
     public event UnityAction<BeatBlock> OnBeatPressed = delegate { }; // Player pressed downn on a beat
     public event UnityAction<BeatBlock, float> OnBeatScored = delegate { }; // Player released on a beat and received some points
-    public event UnityAction OnMissed = delegate { };
+    public event UnityAction<BeatBlock> OnMissed = delegate { };
 
     public RectTransform beatTrack;
     public KeyCode buttonToPress = KeyCode.Z;
@@ -26,6 +26,7 @@ public class RhythmGameLogic : MonoBehaviour
     public float beatLeadTime = 12; // how long OnBeatStartingSoon is called before OnBeat
     // todo maybe have a calibrated offset
     public float pressButtonWithinTime = .2f; // press the button within .2 beats of the actual start/end time
+    public float pressTimeOffset = .15f; // assume players press the button this late
     public float deleteAfter = 20; // delete after this many beats
 
 
@@ -52,7 +53,7 @@ public class RhythmGameLogic : MonoBehaviour
 
         if (null != pressingOnBlock)
         {
-            if (Input.GetKeyUp(buttonToPress))
+            if (Input.GetKeyUp(buttonToPress) || Jukebox.inst.CurrentBeat > pressingOnBlock.EndOnBeat + pressTimeOffset + pressButtonWithinTime * 2)
             {
                 float score = ScoreBeat(pressingOnBlock, pressStartTime, Jukebox.inst.CurrentBeat);
                 OnBeatScored(pressingOnBlock, score);
@@ -70,7 +71,7 @@ public class RhythmGameLogic : MonoBehaviour
                 for (int i = 0; i < instantiatedBlocks.Count; i++)
                 {
                     var block = instantiatedBlocks[i];
-                    float startDelta = Mathf.Abs(block.StartOnBeat - Jukebox.inst.CurrentBeat);
+                    float startDelta = Mathf.Abs(block.StartOnBeat + pressTimeOffset - Jukebox.inst.CurrentBeat);
                     if (startDelta < pressButtonWithinTime && !alreadyScoredBlocks.Contains(block)
                             && (null == closest || startDelta < closestDelta))
                     {
@@ -82,18 +83,28 @@ public class RhythmGameLogic : MonoBehaviour
 
                 if (null != closest)
                 {
-                    Debug.Log("Hitting block " + closest + " current time " + Jukebox.inst.CurrentBeat);
                     pressingOnBlock = closest;
                     pressStartTime = Jukebox.inst.CurrentBeat;
                     OnBeatPressed(closest);
                 }
                 else
                 {
-                    OnMissed(); // you missed, you fool!!!
+                    OnMissed(null);
                 }
             }
         }
 
+        // check for notes you may have whiffed
+        for (int i = 0; i < instantiatedBlocks.Count; i++)
+        {
+            var block = instantiatedBlocks[i];
+            if (Jukebox.inst.CurrentBeat > block.StartOnBeat + pressTimeOffset + pressButtonWithinTime
+                    && block != pressingOnBlock && !alreadyScoredBlocks.Contains(block))
+            {
+                OnMissed(block);
+                alreadyScoredBlocks.Add(block);
+            }
+        }
         
         // instantiation
         while (Jukebox.inst.CurrentBeat + beatLeadTime > lastInstantiatedBeat && lastInstantiatedBeat < toPlay.Count)
@@ -159,8 +170,51 @@ public class RhythmGameLogic : MonoBehaviour
 
     public float ScoreBeat(BeatBlock beat, float beatStartedPress, float beatEndedPress)
     {
-        Debug.Log("Scored beat: " + beat + " started press " + beatStartedPress + " ended press " + beatEndedPress);
-        // TODO score logic!!!!!!!!!!!!!!!!
-        return 1f;
+        // maybe up to 4 for pressing and releasing at the right time, and 1 for each beat of long note
+        // factor in pressTimeOffset here
+        bool okay = IsOkay(beat.StartOnBeat, beatStartedPress);
+        bool great = IsGreat(beat.StartOnBeat, beatStartedPress);
+        bool perfect = IsPerfect(beat.StartOnBeat, beatStartedPress);
+        bool endedOnTime = IsOkay(beat.EndOnBeat, beatEndedPress);
+
+        float score = 0f;
+        if (perfect)
+        {
+            score += 4f;
+        }
+        else if (great)
+        {
+            score += 2f;
+        }
+        else if (okay)
+        {
+            score += 1f;
+        }
+
+        // for long notes
+        score += Mathf.Min(beat.BeatLength, beatEndedPress - beatStartedPress);
+
+        if (!endedOnTime)
+        {
+            // dock points for finishing badly
+            score /= 2f;
+        }
+
+        return score;
+    }
+
+    public bool IsPerfect(float targetTime, float pressedTime)
+    {
+        return Mathf.Abs(targetTime + pressTimeOffset - pressedTime) < pressButtonWithinTime / 4f;
+    }
+
+    public bool IsGreat(float targetTime, float pressedTime)
+    {
+        return Mathf.Abs(targetTime + pressTimeOffset - pressedTime) < pressButtonWithinTime / 2f;
+    }
+
+    public bool IsOkay(float targetTime, float pressedTime)
+    {
+        return Mathf.Abs(targetTime + pressTimeOffset - pressedTime) < pressButtonWithinTime;
     }
 }

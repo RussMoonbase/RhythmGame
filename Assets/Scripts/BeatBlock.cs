@@ -39,7 +39,7 @@ public class BeatBlock : MonoBehaviour
     public void SetBeatLength(int length)
     {
         BeatLength = length;
-        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(screenSize, distanceBetweenBeats * BeatLength));
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(screenSize, screenSize + distanceBetweenBeats * BeatLength));
     }
 
     public override string ToString()

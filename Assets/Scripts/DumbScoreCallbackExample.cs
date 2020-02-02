@@ -23,20 +23,27 @@ public class DumbScoreCallbackExample : MonoBehaviour
         }
     }
 
-    private void Inst_OnBeatPressed(BeatBlock beat)
+    private void Inst_OnBeatPressed(BeatBlock block)
     {
-        Debug.Log("Beat pressed yo " + beat);
+        Debug.Log("Beat pressed " + block);
     }
 
-    private void Inst_OnBeatScored(BeatBlock beat, float score)
+    private void Inst_OnBeatScored(BeatBlock block, float score)
     {
         totalScore += score;
-        Debug.Log(" New total score " + totalScore);
+        Debug.Log("Score " + score + " New total score " + totalScore);
     }
 
-    private void Inst_OnMissed()
+    private void Inst_OnMissed(BeatBlock block)
     {
-        Debug.LogError("You missed, ding dong! :O");
+        if (null != block)
+        {
+            Debug.Log("Whiffed block " + block);
+        }
+        else
+        {
+            Debug.Log("Tried to hit something but missed");
+        }
     }
 
 }
