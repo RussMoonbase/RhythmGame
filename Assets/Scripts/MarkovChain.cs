@@ -59,7 +59,13 @@ public sealed class MarkovChain {
     }
 
     private static List<string> ChainEdges(Dictionary<Tuple<string, string>, List<string>> edges, Config config) {
-        Tuple<string, string> edge = new List<Tuple<string, string>>(edges.Keys)[config.random.Next(edges.Count)];
+        List<Tuple<string, string>> allTuples = new List<Tuple<string, string>>(edges.Keys);
+        List<Tuple<string, string>> apologyTuples = FindApologyPairs(new List<Tuple<string, string>>(edges.Keys));
+        if (apologyTuples.Count == 0) {
+            apologyTuples = allTuples;
+        }
+
+        Tuple<string, string> edge = apologyTuples[config.random.Next(apologyTuples.Count)];
 
         List<string> chain = new List<string>();
 
@@ -84,5 +90,29 @@ public sealed class MarkovChain {
 
         Debug.Log("Chain of length " + chain.Count + " created.");
         return chain;
+    }
+
+    private static List<Tuple<string, string>> FindApologyPairs(List<Tuple<string, string>> allTuples){
+        List<Tuple<string, string>>filtered = new List<Tuple<string, string>>();
+
+        foreach (Tuple<string, string> pair in allTuples) {
+            bool firstStartsCapital = pair.first[0] >= 'A' && pair.first[0] <= 'Z';
+            bool isSorry = IsApology(pair.first.ToLower()) ||
+                           IsApology(pair.second.ToLower());
+            if (firstStartsCapital && isSorry) {
+                filtered.Add(pair);
+            }
+
+        }
+
+        return filtered;
+    }
+
+    private static HashSet<string> APOLOGY_STRINGS = new HashSet<string> {
+        "sorry", "apology", "apologize", "regret", "oops", "bad", "pardon", "apologies"
+    };
+
+    private static bool IsApology(string s) {
+        return APOLOGY_STRINGS.Contains(s);
     }
 }
