@@ -154,6 +154,7 @@ public class RhythmGameLogic : MonoBehaviour
                     lastInstantiatedBlock = Instantiate(beatBlockPrefab, beatTrack).GetComponent<BeatBlock>();
                     lastInstantiatedBlock.StartOnBeat = lastInstantiatedBeat;
                     lastInstantiatedBlock.UpdatePosition();
+                    lastInstantiatedBlock.transform.SetSiblingIndex(1); // draw order
                     instantiatedBlocks.Add(lastInstantiatedBlock);
                 }
             }
