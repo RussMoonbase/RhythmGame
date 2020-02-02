@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: e089cdec405da9744b9c03ba6e44695a
+guid: b7e97c1e5e0106b49abb66e152b166e5
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Shake Fist
+    second: Wave Hip Hop Dance
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Shake Fist
+      name: Wave Hip Hop Dance
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 73
+      lastFrame: 479
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -47,13 +47,13 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: e089cdec405da9744b9c03ba6e44695a
+guid: 90e765d84bfbd5d4c88b9ff6e3e3613b
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Shake Fist
+    second: Yelling
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Shake Fist
+      name: Yelling
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 73
+      lastFrame: 235
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

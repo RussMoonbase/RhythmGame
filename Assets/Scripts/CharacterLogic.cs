@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CharacterLogic : MonoBehaviour
 {
-   float _happinessFactor = 0;
    public KeyCode increaseKey;
    public KeyCode decreaseKey;
+
+   float _happinessFactor = 0;
+   float _currentHappiness;
 
    Animator _animator;
 
@@ -22,34 +24,39 @@ public class CharacterLogic : MonoBehaviour
    {
       if (Input.GetKeyDown(increaseKey))
       {
-         IncreaseHappiness();
+         _currentHappiness = _happinessFactor;
+         StartCoroutine(UpdateHappinessRoutine(_currentHappiness + 0.1f));
       }
 
       if (Input.GetKeyDown(decreaseKey))
       {
-         DecreaseHappiness();
+         _currentHappiness = _happinessFactor;
+         StartCoroutine(UpdateHappinessRoutine(_currentHappiness - 0.1f));
       }
    }
 
-   void IncreaseHappiness()
+   IEnumerator UpdateHappinessRoutine(float happinessLevel)
    {
-      _happinessFactor += 0.1f;
-      Debug.Log("HappinessFactor = " + _happinessFactor);
+      const float FINISH_TIME = 0.5f;
+      float timer = 0f;
 
-      if (_animator)
+      while(timer < FINISH_TIME)
       {
-         Debug.Log("there is an animator");
-         _animator.SetFloat("HappinessFactor", _happinessFactor);
+         timer += Time.deltaTime;
+         if (_animator)
+         {
+            _happinessFactor = Mathf.Lerp(_currentHappiness, happinessLevel, timer);
+            _animator.SetFloat("HappinessFactor", _happinessFactor);
+            yield return null;
+         }
       }
    }
 
-   void DecreaseHappiness()
+   void ChangeHappiness(float happinessNum)
    {
-      _happinessFactor -= 0.1f;
-
       if (_animator)
       {
-         _animator.SetFloat("HappinessFactor", _happinessFactor);
+         _animator.SetFloat("HappinessFactor", Mathf.Lerp(_currentHappiness, happinessNum, Time.deltaTime * 0.5f));
       }
    }
 }
