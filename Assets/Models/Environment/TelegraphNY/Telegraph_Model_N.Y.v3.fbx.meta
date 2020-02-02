@@ -8,8 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
-      type: 3}
+    second: {fileID: 2100000, guid: 8f7b9cb7807d9da48a35de9d16559564, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -20,26 +19,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.003
-    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
-      type: 3}
+    second: {fileID: 2100000, guid: 0836954e0ab5ade49b21f18dedf7a666, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.004
-    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
-      type: 3}
+    second: {fileID: 2100000, guid: 8f7b9cb7807d9da48a35de9d16559564, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.005
-    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
-      type: 3}
+    second: {fileID: 2100000, guid: 8f7b9cb7807d9da48a35de9d16559564, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.006
-    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
-      type: 3}
+    second: {fileID: 2100000, guid: 8f7b9cb7807d9da48a35de9d16559564, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -75,7 +70,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.02
+    globalScale: 0.015
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -121,7 +116,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0002
+    globalScale: 0.015
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

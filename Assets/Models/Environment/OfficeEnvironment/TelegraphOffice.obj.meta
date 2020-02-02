@@ -3,7 +3,72 @@ guid: 7a87e5d0e16271740bcef8c4428e70c7
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: 5b6c906af6cc4694eaf3edef2630ef7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: custom12
+    second: {fileID: 2100000, guid: 1073de91a9b8ee34cbe5b60305b5cf74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: custom14
+    second: {fileID: 2100000, guid: 0836954e0ab5ade49b21f18dedf7a666, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: custom5
+    second: {fileID: 2100000, guid: d308e041a3814744b942083a231e7a24, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: custom6
+    second: {fileID: 2100000, guid: 00548437fc315cb4f86b0a91fbc5214f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: foliage
+    second: {fileID: 2100000, guid: 27877e2dcdd550040aa52fec278536f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 16b6ece9c2a02dd479442d437349b586, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalDark
+    second: {fileID: 2100000, guid: 0ddd4f52833ca564b89ecec7b9144f91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalLight
+    second: {fileID: 2100000, guid: 24fde3d4d63443440a05401f5a874a4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tan
+    second: {fileID: 2100000, guid: 9680fe67ecc68ab4baf9750a421d00dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: 96e796d680c7fd24584951948525c324, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: woodDark
+    second: {fileID: 2100000, guid: 845e37d25daff0e49b3e8a58b56ffdfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: woodLight
+    second: {fileID: 2100000, guid: 4f501d0b408463f45b944c27ff82f0d9, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
