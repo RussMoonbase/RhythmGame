@@ -29,6 +29,7 @@ public class RhythmGameLogic : MonoBehaviour
     public float pressTimeOffset = .15f; // assume players press the button this late
     public float deleteAfter = 20; // delete after this many beats
 
+    public List<string> poem = new List<string>();
 
     // the beat pattern is going to come as a series of 0s and 1s in bytes
     // probably care about it in pairs, so like 101010 is 3 beats in sequence and 101110 is one beat and one long beat
@@ -43,7 +44,7 @@ public class RhythmGameLogic : MonoBehaviour
 
     private void Start()
     {
-        List<string> poem = TelegramSource.inst.GetLovePoem();
+        poem = TelegramSource.inst.GetLovePoem();
         this.toPlay = BeatBitCompiler.Compile(poem, RandomSource.rand);
     }
 

@@ -24,13 +24,15 @@ public sealed class BeatBitCompiler {
             bits = (hash >> 8) & 0xf;
         }
 
-        for (int i = 0; i < 8; i++) {
+        // chris: trying more filled out-ness
+        for (int i = 0; i < 7; i++) {
             if ((bits & (0x1 << i)) > 0) {
-                bitList.Add(Util.RandomBool() ? BeatBit.Single : BeatBit.Long);
+                bitList.Add(BeatBit.Long);
             } else {
-                bitList.Add(BeatBit.None);
+                bitList.Add(BeatBit.Single);
             }
         }
+        bitList.Add(BeatBit.None);
 
         return bitList;
     }
