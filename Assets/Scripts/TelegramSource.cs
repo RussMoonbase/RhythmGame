@@ -18,6 +18,11 @@ public class TelegramSource : MonoBehaviour {
     private MarkovChain lawBookChain;
 
     private void Awake() {
+        if (null != inst)
+        {
+            Destroy(gameObject);
+            return;
+        }
         inst = this;
         DontDestroyOnLoad(this);
 
