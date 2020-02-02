@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f9da2daf645cc224c83d6828704b8b76
+guid: 27860f51566a1d745ba9261b5587193d
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
@@ -8,42 +8,48 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: 708d0eb606973bd4e810e2010d0f1fe7, type: 2}
+    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
+      type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.002
-    second: {fileID: 2100000, guid: b670733971ed56b4ca28ab9be1d6d4bf, type: 2}
+    second: {fileID: -2954843585905124034, guid: 3e470fdea577be344879e44c404dd5d9,
+      type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.003
-    second: {fileID: 2100000, guid: 14e56b35ea06e784fa5b823d73444aa9, type: 2}
+    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
+      type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.004
-    second: {fileID: 2100000, guid: 45cfe8c458901c24bb3067928ea9c885, type: 2}
+    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
+      type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.005
-    second: {fileID: 2100000, guid: b1ee7ccf2c25b714ab2bfe9100d250ce, type: 2}
+    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
+      type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.006
-    second: {fileID: 2100000, guid: 940d0ac386c60dc43aba79133aab7f65, type: 2}
+    second: {fileID: -5173966397720942367, guid: 7a87e5d0e16271740bcef8c4428e70c7,
+      type: 3}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.007
-    second: {fileID: 2100000, guid: 17a2e5ce5dc33e4468a66842ae521a54, type: 2}
+    second: {fileID: 2100000, guid: 423c1013dc6a3d04f935f51cdc929330, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -69,7 +75,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.02
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -115,7 +121,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.0002
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

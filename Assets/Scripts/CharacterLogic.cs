@@ -40,7 +40,7 @@ public class CharacterLogic : MonoBehaviour
       const float FINISH_TIME = 0.5f;
       float timer = 0f;
 
-      while(timer < FINISH_TIME)
+      while (timer < FINISH_TIME)
       {
          timer += Time.deltaTime;
          if (_animator)
