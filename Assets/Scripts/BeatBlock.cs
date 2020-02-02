@@ -9,6 +9,13 @@ public class BeatBlock : MonoBehaviour
 
     public int BeatLength { get; private set; }
     public float StartOnBeat { get; set; } = 0f;
+    public float EndOnBeat
+    {
+        get
+        {
+            return StartOnBeat + BeatLength;
+        }
+    }
     private RectTransform rt;
 
     private void Awake()
