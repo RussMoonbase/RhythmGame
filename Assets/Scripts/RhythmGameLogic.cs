@@ -33,6 +33,21 @@ public class RhythmGameLogic : MonoBehaviour
     public float pressTimeOffset = .15f; // assume players press the button this late
     public float deleteAfter = 20; // delete after this many beats
 
+    ///
+    ///   Scoring
+    ///
+
+    // The number of beats that have elapsed for the current word.
+    private float wordBeats = 0f;
+    // The number of words that we have scored from the poem so far.
+    private int wordsScored = 0;
+    // The number of blocks in the current word that have been scored correctly.
+    private int correctBlocksInWord = 0;
+    // The number of blocks in the current word that are available.
+    private int totalBlocksInWord = 0;
+    // The words emitted at the end
+    private List<string> finalWords = new List<string>();
+
     // the beat pattern is going to come as a series of 0s and 1s in bytes
     // probably care about it in pairs, so like 101010 is 3 beats in sequence and 101110 is one beat and one long beat
     // and broken into 2 byte sections????? i guess?
@@ -53,7 +68,6 @@ public class RhythmGameLogic : MonoBehaviour
     private void Update()
     {
         // update input for the tracks
-
         if (null != pressingOnBlock)
         {
             if (Input.GetKeyUp(buttonToPress) || Jukebox.inst.CurrentBeat > pressingOnBlock.EndOnBeat + pressTimeOffset + pressButtonWithinTime * 2)
@@ -62,6 +76,7 @@ public class RhythmGameLogic : MonoBehaviour
                 OnBeatScored(pressingOnBlock, score);
                 alreadyScoredBlocks.Add(pressingOnBlock);
                 pressingOnBlock = null;
+                correctBlocksInWord++;
             }
         }
         else
@@ -108,6 +123,30 @@ public class RhythmGameLogic : MonoBehaviour
                 alreadyScoredBlocks.Add(block);
             }
         }
+
+        // Score current word if applicable
+        float currentWordBeats = (1 + Jukebox.inst.CurrentBeat) % 8f;
+        if (Mathf.Abs(currentWordBeats - wordBeats) > 6f) {
+            int totalBlocksInWord = GetTotalBlocksForWord(wordsScored);
+            string word = poem[wordsScored++];
+
+            Debug.Log("Total: " + totalBlocksInWord + ", Correct: " + correctBlocksInWord);
+
+            if (totalBlocksInWord == correctBlocksInWord) {
+                Debug.Log("Word correct!: " + word);
+                finalWords.Add(word);
+            } else {
+                Debug.Log("Word incorrect!: " + word);
+                finalWords.Add("XXX");
+            }
+
+            correctBlocksInWord = 0;
+
+            if (wordsScored >= poem.Count) {
+                Debug.Log("Done scoring!");
+            }
+        }
+        wordBeats = currentWordBeats;
 
         // instantiation
         while (Jukebox.inst.CurrentBeat + beatLeadTime > lastInstantiatedBeat && lastInstantiatedBeat < toPlay.Count)
@@ -232,5 +271,18 @@ public class RhythmGameLogic : MonoBehaviour
     public bool IsOkay(float targetTime, float pressedTime)
     {
         return Mathf.Abs(targetTime + pressTimeOffset - pressedTime) < pressButtonWithinTime;
+    }
+
+    private int GetTotalBlocksForWord(int wordIdx) {
+        int singles = 0;
+
+        int start = wordIdx * 8;
+        for (int i = start; i < start + 8; i++) {
+            if (toPlay[i] == BeatBit.Single) {
+                singles++;
+            }
+        }
+
+        return singles + (toPlay[6] == BeatBit.Long ? 1 : 0);
     }
 }
