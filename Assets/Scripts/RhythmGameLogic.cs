@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class RhythmGameLogic : MonoBehaviour
 {
@@ -46,7 +47,9 @@ public class RhythmGameLogic : MonoBehaviour
     // The number of blocks in the current word that are available.
     private int totalBlocksInWord = 0;
     // The words emitted at the end
-    private List<string> finalWords = new List<string>();
+    public static List<string> finalWords = new List<string>();
+
+    public string endSceneName;
 
     // the beat pattern is going to come as a series of 0s and 1s in bytes
     // probably care about it in pairs, so like 101010 is 3 beats in sequence and 101110 is one beat and one long beat
@@ -61,6 +64,7 @@ public class RhythmGameLogic : MonoBehaviour
 
     private void Start()
     {
+        finalWords.Clear();
         poem = TelegramSource.inst.GetLovePoem();
         this.toPlay = BeatBitCompiler.Compile(poem, RandomSource.rand);
     }
@@ -144,6 +148,7 @@ public class RhythmGameLogic : MonoBehaviour
 
             if (wordsScored >= poem.Count) {
                 Debug.Log("Done scoring!");
+                SceneManager.LoadScene(endSceneName);
             }
         }
         wordBeats = currentWordBeats;

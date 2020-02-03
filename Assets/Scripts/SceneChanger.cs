@@ -7,10 +7,16 @@ public class SceneChanger : MonoBehaviour
 {
     public bool changeSceneOnKey = false;
     public string changeSceneTo = "";
+    private float startTime = 0f;
+
+    private void Awake()
+    {
+        startTime = Time.time;
+    }
 
     private void Update()
     {
-        if (changeSceneOnKey && Input.anyKeyDown)
+        if (Time.time > startTime + 3f && changeSceneOnKey && Input.anyKeyDown)
         {
             SceneManager.LoadScene(changeSceneTo);
         }
