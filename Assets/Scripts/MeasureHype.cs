@@ -5,6 +5,8 @@ using UnityEngine;
 public class MeasureHype : MonoBehaviour
 {
     public float Hype { get; private set; } = 0f;
+   float minHype = -1f;
+   float maxHype = 1f;
 
     void Start()
     {
@@ -43,13 +45,16 @@ public class MeasureHype : MonoBehaviour
             Hype -= .1f;
         }
 
-        Hype = Mathf.Clamp01(Hype);
+        Hype = Mathf.Clamp(Hype, minHype, maxHype);
+
+        //Hype = Mathf.Clamp01(Hype);
     }
 
     private void Inst_OnMissed(BeatBlock block)
     {
         Hype -= .1f;
-        Hype = Mathf.Clamp01(Hype);
+        Hype = Mathf.Clamp(Hype, minHype, maxHype);
+        //Hype = Mathf.Clamp01(Hype);
     }
 
 }
