@@ -14,7 +14,7 @@ public class RandomSource : MonoBehaviour {
                 var source = FindObjectOfType<RandomSource>();
                 if (null != source)
                 {
-                    _rand = new System.Random(source.seed);
+                    _rand = new System.Random(); //new System.Random(source.seed);
                 }
                 else
                 {

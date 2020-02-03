@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4bf8993a4516a54f8008ab6897829cf, type: 3}
   m_Name: info_Epic
   m_EditorClassIdentifier: 
-  song: {fileID: 8300000, guid: ce94129a822153c4ab6c8ee817013693, type: 3}
+  song: {fileID: 8300000, guid: d9e7fa4f1423e0a4eab6d0534b733e7a, type: 3}
   bpm: 130
   songStartTime: 7.85
