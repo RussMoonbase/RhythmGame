@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 705548070149120980}
-  songToPlay: {fileID: 11400000, guid: 268d0c9663109e5438aa47165a5e5093, type: 2}
-  beatLeadTime: 4
+  possibleSongs:
+  - {fileID: 11400000, guid: 75d6eba23fc3e3e4ea51fded8899494d, type: 2}
+  - {fileID: 11400000, guid: 390f5c6f17e18ea4b9daa088444ecb94, type: 2}
+  - {fileID: 11400000, guid: b690c3bd4f2d9ae4f956cf160770325b, type: 2}
 --- !u!82 &705548070149120980
 AudioSource:
   m_ObjectHideFlags: 0
