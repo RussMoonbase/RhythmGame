@@ -13,7 +13,8 @@ public class Jukebox : MonoBehaviour
     private float lastBeatCallback = float.NegativeInfinity;
 
     public AudioSource audioSource;
-    public SongInfo songToPlay;
+    public SongInfo[] possibleSongs;
+    private SongInfo songToPlay;
 
     public float CurrentBeat { get; private set; } = 0f;
 
@@ -21,6 +22,7 @@ public class Jukebox : MonoBehaviour
     {
         inst = this;
 
+        songToPlay = possibleSongs[Random.Range(0, possibleSongs.Length)];
         audioSource.clip = songToPlay.song;
         audioSource.Play();
     }
